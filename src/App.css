@@ -1,7 +1,29 @@
 body {
-  background-color: #000;
+  background-color: #1c1c25;
   color:#fff;
 }
 .App-logo{
   width: 200px;
+  filter: invert(1);
+}
+.navbar {
+  background-color: #1c1c25 !important;
+  color: #fff !important;
+}
+.navbar a {
+  color: #fff !important;
+}
+.navbar-toggler-icon {
+  filter: invert(1);
+}
+
+.container {
+  min-height: 100vh;
+  padding: 50px 15px;
+}
+
+@media (max-width: 764px) {
+  .App-logo{
+    width: 100px;
+  }
 }

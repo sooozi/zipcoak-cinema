@@ -11,14 +11,14 @@ function App() {
     <Routes>
       <Route path="/" element={<AppLayout/>}>
         <Route index element={<Homepage/>}/>
-      </Route>
+        <Route path="movies">
+          <Route index element={<MoviePage/>}/>
+          <Route path=":id" element={<MovieDetailPage/>}/>
+        </Route>
 
-      <Route path="movies">
-        <Route index element={<MoviePage/>}/>
-        <Route path=":id" element={<MovieDetailPage/>}/>
+        <Route path="*" element={<MovieDetailPage/>}/>
+        
       </Route>
-
-      <Route path="*" element={<MovieDetailPage/>}/>
     </Routes>
   );
 }
