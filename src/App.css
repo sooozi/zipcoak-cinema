@@ -2,9 +2,12 @@ body {
   background-color: #1c1c25;
   color:#fff;
 }
-.container {
+.container-wrap {
   min-height: 100vh;
   padding: 50px 15px;
+}
+.container-wrap-wide {
+  padding: 0;
 }
 /* ========== navbar ========== */
 .App-logo{
@@ -12,9 +15,12 @@ body {
   filter: invert(1);
 }
 .navbar {
-  background-color: #1c1c25 !important;
+  background-color: #1c1c259c !important;
   color: #fff !important;
   padding: 15px 0;
+  position: fixed;
+  z-index: 1;
+  width: 100%;
 }
 .navbar a {
   color: #fff !important;

@@ -3,9 +3,9 @@ import Banner from './components/Banner/Banner'
 
 const Homepage = () => {
   return (
-    <div className="container HomePage-wrap">
-      Homepage
+    <div className="container-wrap-wide HomePage-wrap">
       <Banner />
+      Homepage
     </div>
   )
 }

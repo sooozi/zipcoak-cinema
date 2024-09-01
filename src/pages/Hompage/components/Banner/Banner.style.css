@@ -1,0 +1,30 @@
+.banner {
+    display: flex;
+    align-items: end;
+    height: 100vh;
+    background-size: cover;
+    background-position: top center;
+    background-repeat: no-repeat;
+    position: relative;
+}
+.banner:before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    background: linear-gradient(to top, #1c1c25, transparent 60%);
+    height: 100vh;
+    width: 100%;
+}
+.banner-txt-box {
+    z-index: 1;
+    padding: 0 3rem 5%;
+}
+.banner-txt-box h3 {
+    font-weight: 100;
+    font-size: calc(4.3rem + .6vw);
+}
+.banner-txt-box p {
+    opacity: 0.8;
+    font-weight: 100;
+}
