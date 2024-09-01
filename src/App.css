@@ -2,6 +2,11 @@ body {
   background-color: #1c1c25;
   color:#fff;
 }
+.container {
+  min-height: 100vh;
+  padding: 50px 15px;
+}
+/* ========== navbar ========== */
 .App-logo{
   width: 150px;
   filter: invert(1);
@@ -17,12 +22,7 @@ body {
 .navbar-toggler-icon {
   filter: invert(1);
 }
-
-.container {
-  min-height: 100vh;
-  padding: 50px 15px;
-}
-button:focus:not(:focus-visible) {
+.navbar-toggler:focus:not(:focus-visible) {
   outline: transparent;
   box-shadow: none;
 }
