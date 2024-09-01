@@ -2,7 +2,7 @@ import React from 'react'
 
 const MoviesPage = () => {
   return (
-    <div className="container MoviesPage-wrap">
+    <div className="container-wrap MoviesPage-wrap">
       MoviesPage
     </div>
   )

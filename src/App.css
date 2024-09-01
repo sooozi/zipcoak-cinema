@@ -4,7 +4,7 @@ body {
 }
 .container-wrap {
   min-height: 100vh;
-  padding: 50px 15px;
+  padding: 100px 15px;
 }
 .container-wrap-wide {
   padding: 0;
