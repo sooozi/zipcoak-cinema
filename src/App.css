@@ -3,12 +3,13 @@ body {
   color:#fff;
 }
 .App-logo{
-  width: 200px;
+  width: 150px;
   filter: invert(1);
 }
 .navbar {
   background-color: #1c1c25 !important;
   color: #fff !important;
+  padding: 15px 0;
 }
 .navbar a {
   color: #fff !important;
@@ -21,9 +22,33 @@ body {
   min-height: 100vh;
   padding: 50px 15px;
 }
+button:focus:not(:focus-visible) {
+  outline: transparent;
+  box-shadow: none;
+}
 
-@media (max-width: 764px) {
+
+
+/* Mobile - Portrait(세로방향) */
+@media (max-width: 575px) {}
+
+/* Mobile - Landscape(가로방향) */
+@media (min-width: 576px) and (max-width: 767px) {}
+
+@media (max-width: 767px) {
+  .navbar {
+    padding: 10px 0;
+  }
   .App-logo{
     width: 100px;
   }
 }
+
+/* Tablet */
+@media (min-width: 768px) and (max-width: 991px) {}
+
+/* Desktop */
+@media (min-width: 992px) and (max-width: 1199px) {}
+
+/* Desktop (Large) */
+@media (min-width: 1200px) {}
