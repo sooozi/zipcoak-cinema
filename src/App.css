@@ -28,6 +28,11 @@ button:focus:not(:focus-visible) {
 }
 
 
+/*
+******************************
+* MEDIA QUERIES
+*****************************
+*/
 
 /* Mobile - Portrait(세로방향) */
 @media (max-width: 575px) {}
