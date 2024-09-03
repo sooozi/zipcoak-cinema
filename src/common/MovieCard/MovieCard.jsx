@@ -2,8 +2,20 @@ import React from 'react';
 import { Badge } from 'react-bootstrap';
 import Stack from 'react-bootstrap/Stack';
 import './MovieCard.style.css';
+import { useMovieGenreQuery } from '../../hooks/useMovieGenre';
 
 const MovieCard = ({ movie }) => {
+  const {data:genreData} = useMovieGenreQuery();
+
+  const showGenre = (genreIdList) => {
+    if(!genreData) return [];
+    const genreNameList = genreIdList.map((id) => {
+      const genreObj = genreData.find((genre) => genre.id === id);
+      return genreObj.name;
+    });
+
+    return genreNameList;
+  }
   return (
     <div className='movie-card-wrap'>
       <div 
@@ -15,9 +27,9 @@ const MovieCard = ({ movie }) => {
         <div className='movie-card-overlay'>
           <h5 className='movie-card-tit'>{movie.title}</h5>
           <Stack className='movie-conts' direction="horizontal" gap={2}>
-            <div className='movie-conts-top'>
-              {movie.genre_ids.map((id, index) => (
-                <Badge bg="danger" key={index}>{id}</Badge> // map 함수가 값을 반환하도록 수정
+            <div className='movie-conts-top genre-conts'>
+              {showGenre(movie.genre_ids).map((genre, index) => (
+                <Badge bg="danger" key={index}>{genre}</Badge> // map 함수가 값을 반환하도록 수정
               ))}
             </div>
             <div className='movie-conts-top'>
@@ -29,7 +41,7 @@ const MovieCard = ({ movie }) => {
               </Badge>
             </div>
             <Badge className='movie-cont cont-adult' pill bg="secondary">
-              📛 {movie.adult ? "OVER 18" : "UNDER 18"}
+              {movie.adult ? "📛 OVER 18" : "👨‍👩‍👧‍👦 UNDER 18"}
             </Badge>
           </Stack>
         </div>

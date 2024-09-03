@@ -1,8 +1,11 @@
 .movie-card-cont:hover{
     z-index: 1;
 }
+.movie-slider-wrap{
+    padding-top: 5rem;
+}
 .react-multi-carousel-list {
-    padding: 50px 0 100px;
+    padding: 50px 0;
 }
 .react-multi-carousel-dot button {
     border-width: 0px;
@@ -19,4 +22,29 @@
 }
 .react-multiple-carousel__arrow:hover {
     background: rgb(82, 84, 204);
+}
+
+/*
+******************************
+* MEDIA QUERIES
+*****************************
+*/
+
+/* Mobile - Portrait(세로방향) */
+@media (max-width: 575px) {}
+
+/* Mobile - Landscape(가로방향) */
+@media (min-width: 576px) and (max-width: 767px) {}
+
+@media (max-width: 767px) {
+    .react-multi-carousel-dot button {
+        margin-right: 5px;
+    }
+    .react-multiple-carousel__arrow {
+        min-width: 30px;
+        min-height: 30px;
+    }
+    .react-multiple-carousel__arrow::before {
+        font-size: 15px;
+    }
 }

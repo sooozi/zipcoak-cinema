@@ -21,7 +21,7 @@
     padding: 15px;
     font-weight: bold;
     overflow-wrap: break-word;
-    transition: all 1s ease-in-out;
+    transition: all 0.5s ease-in-out;
     display: flex;
     /* align-content: space-between; */
     /* flex-wrap: wrap; */
@@ -40,6 +40,15 @@
 .movie-conts-top{
     display: flex;
     gap: 5px;
+}
+.genre-conts {
+    flex-flow: wrap;
+}
+.genre-conts .badge {
+    background: rgba(255, 255, 255, 0.3) !important;
+    border: 1px solid #fff;
+    box-sizing: border-box;
+    font-weight: 400;
 }
 .movie-cont {
     font-size: 12px;
