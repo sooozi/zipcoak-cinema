@@ -1,0 +1,7 @@
+.carousel-container {
+    overflow: hidden;
+    height: 440px;
+}
+.movie-card-cont:hover{
+    z-index: 1;
+}
