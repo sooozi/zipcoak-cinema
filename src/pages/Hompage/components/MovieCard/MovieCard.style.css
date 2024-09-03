@@ -1,7 +1,8 @@
 .movie-card-box{
     width: 220px;
     width: 100%;
-    height: 330px;
+    /* height: 330px; */
+    aspect-ratio: 2 / 3;
     background-size: cover;
     background-repeat: no-repeat;
     cursor: pointer;
@@ -22,8 +23,10 @@
     overflow-wrap: break-word;
     transition: all 1s ease-in-out;
     display: flex;
-    align-content: space-between;
-    flex-wrap: wrap;
+    /* align-content: space-between; */
+    /* flex-wrap: wrap; */
+    flex-direction: column;
+    justify-content: space-between;
 }
 .movie-card-overlay:hover{
     opacity: 1;
