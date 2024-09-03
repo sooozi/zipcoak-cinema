@@ -1,7 +1,9 @@
 .movie-card-box{
     width: 220px;
+    width: 100%;
     height: 330px;
     background-size: cover;
+    background-repeat: no-repeat;
     cursor: pointer;
     transition: all 0.5s ease-in-out;
 }
@@ -19,7 +21,28 @@
     font-weight: bold;
     overflow-wrap: break-word;
     transition: all 1s ease-in-out;
+    display: flex;
+    align-content: space-between;
+    flex-wrap: wrap;
 }
 .movie-card-overlay:hover{
     opacity: 1;
+}
+.movie-conts {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: flex-start;
+}
+.movie-conts-top{
+    display: flex;
+    gap: 5px;
+}
+.movie-cont {
+    font-size: 12px;
+    font-weight: normal;
+    background: rgba(103, 105, 221, 0.7) !important;
+}
+.cont-adult{
+    background: rgba(255, 106, 106, 0.5) !important;
 }
