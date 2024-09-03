@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useCallback, useEffect, useState } from 'react';
 import Button from 'react-bootstrap/Button';
 import Container from 'react-bootstrap/Container';
 import Form from 'react-bootstrap/Form';
@@ -10,16 +10,16 @@ const AppLayout = () => {
     const [showNavbar, setShowNavbar] = useState(true);
     const [lastScrollY, setLastScrollY] = useState(0);
 
-    const controlNavbar = () => {
+    const controlNavbar = useCallback(() => {
         if (typeof window !== 'undefined') {
-        if (window.scrollY > lastScrollY) { // Scroll down
-            setShowNavbar(false);
-        } else { // Scroll up
-            setShowNavbar(true);
+            if (window.scrollY > lastScrollY) { // Scroll down
+                setShowNavbar(false);
+            } else { // Scroll up
+                setShowNavbar(true);
+            }
+            setLastScrollY(window.scrollY);
         }
-        setLastScrollY(window.scrollY);
-        }
-    };
+    }, [lastScrollY]);
 
     useEffect(() => {
         if (typeof window !== 'undefined') {
@@ -66,4 +66,4 @@ const AppLayout = () => {
     )
 }
 
-export default AppLayout
+export default AppLayout;
