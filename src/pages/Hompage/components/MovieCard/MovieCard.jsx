@@ -7,7 +7,7 @@ const MovieCard = ({movie}) => {
     <div className='movie-card-wrap'>
         <div className='movie-card-box' style={{backgroundImage:`url(https://media.themoviedb.org/t/p/w300_and_h450_bestv2${movie.poster_path})`,}}>
             <div className='movie-card-overlay'>
-              <h3 className='movie-card-tit'>{movie.title}</h3>
+              <h5 className='movie-card-tit'>{movie.title}</h5>
               {movie.genre_ids.map((id) => {
                   <Badge bg="danger">{id}</Badge>
               })}
