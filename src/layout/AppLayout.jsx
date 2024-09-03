@@ -30,7 +30,7 @@ const AppLayout = () => {
             window.removeEventListener('scroll', controlNavbar);
           };
         }
-      }, [lastScrollY]);
+      }, [lastScrollY, controlNavbar]);
     
     return (
         <div>
