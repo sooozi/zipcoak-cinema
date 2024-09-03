@@ -31,6 +31,9 @@
 .movie-card-overlay:hover{
     opacity: 1;
 }
+.movie-slide-tit {
+    text-align: center;
+}
 .movie-conts {
     display: flex;
     flex-direction: column;
