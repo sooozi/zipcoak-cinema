@@ -9,18 +9,22 @@ body {
 .container-wrap-wide {
   padding: 0;
 }
+.side-p {
+  padding: 0 3rem;
+}
+
 /* ========== navbar ========== */
 .App-logo{
   width: 150px;
   filter: invert(1);
 }
 .navbar {
-  background-color: #1c1c259c !important;
+  background-color: rgba(28, 28, 37, 0.7) !important;
   color: #fff !important;
-  padding: 15px 0;
   position: fixed;
-  z-index: 1;
+  z-index: 100;
   width: 100%;
+  backdrop-filter: blur(20px);
 }
 .navbar a {
   color: #fff !important;
@@ -31,6 +35,15 @@ body {
 .navbar-toggler:focus:not(:focus-visible) {
   outline: transparent;
   box-shadow: none;
+}
+.nav-visible {
+  transform: translateY(0);
+  transition: transform 0.5s ease-in-out;
+}
+
+.nav-hidden {
+  transform: translateY(-100%);
+  transition: transform 0.5s ease-in-out;
 }
 
 
@@ -47,6 +60,9 @@ body {
 @media (min-width: 576px) and (max-width: 767px) {}
 
 @media (max-width: 767px) {
+  .side-p {
+    padding: 0 15px;
+  }
   .navbar {
     padding: 10px 0;
   }

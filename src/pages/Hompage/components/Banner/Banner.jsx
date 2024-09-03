@@ -22,7 +22,7 @@ const Banner = () => {
             }}
             className='banner'
         >
-            <div className='banner-txt-box'>
+            <div className='side-p banner-txt-box'>
                 <h3>{data.data.results[0].original_title}</h3>
                 <p>{data.data.results[0].overview}</p>
             </div>

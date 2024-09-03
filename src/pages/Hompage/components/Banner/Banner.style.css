@@ -18,7 +18,7 @@
 }
 .banner-txt-box {
     z-index: 1;
-    padding: 0 3rem 5%;
+    padding-bottom: 5%;
 }
 .banner-txt-box h3 {
     font-weight: 100;
@@ -28,3 +28,31 @@
     opacity: 0.8;
     font-weight: 100;
 }
+
+
+/*
+******************************
+* MEDIA QUERIES
+*****************************
+*/
+
+/* Mobile - Portrait(세로방향) */
+@media (max-width: 575px) {}
+
+/* Mobile - Landscape(가로방향) */
+@media (min-width: 576px) and (max-width: 767px) {}
+
+@media (max-width: 767px) {
+    .banner-txt-box h3 {
+        font-size: calc(2.3rem + .6vw);
+    }
+}
+
+/* Tablet */
+@media (min-width: 768px) and (max-width: 991px) {}
+
+/* Desktop */
+@media (min-width: 992px) and (max-width: 1199px) {}
+
+/* Desktop (Large) */
+@media (min-width: 1200px) {}

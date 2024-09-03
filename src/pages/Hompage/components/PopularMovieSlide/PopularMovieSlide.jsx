@@ -34,7 +34,7 @@ const PopularMovieSlide = (props) => {
 
     return (
         <div className='popular-movie-slide-wrap'>
-            <h3 className='movie-slide-tit'>Popular Movies</h3>
+            <h3 className='movie-slide-tit side-p'>Popular Movies</h3>
             <Carousel
                 swipeable={false}
                 draggable={false}
