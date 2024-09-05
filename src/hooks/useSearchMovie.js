@@ -1,5 +1,5 @@
-// import { useQuery } from "@tanstack/react-query";
-// import api from '../utils/api';
+import { useQuery } from "@tanstack/react-query";
+import api from '../utils/api';
 
 // const fetchSearchMovie = ({ keyword, page }) => {
 //     return keyword
@@ -15,35 +15,29 @@
 //     });
 // };
 
-import { useQuery } from "@tanstack/react-query";
-import api from '../utils/api';
-
-// API 요청을 위한 함수 수정
-const fetchSearchMovie = ({ keyword, page, genre, rating, releaseYear }) => {
-    // 기본 쿼리 문자열을 생성
-    let query = `/movie/popular?page=${page}`;
-
+const fetchSearchMovie = ({ keyword, page, category }) => {
     if (keyword) {
-        query = `/search/movie?page=${page}&query=${encodeURIComponent(keyword)}`;
-    }
-    if (genre) {
-        query += `&genre=${encodeURIComponent(genre)}`;
-    }
-    if (rating) {
-        query += `&rating=${encodeURIComponent(rating)}`;
-    }
-    if (releaseYear) {
-        query += `&releaseYear=${encodeURIComponent(releaseYear)}`;
+        return api.get(`/search/movie?query=${keyword}&page=${page}`);
     }
 
-    return api.get(query);
+    switch (category) {
+        case 'nowplaying':
+            return api.get(`/movie/now_playing?page=${page}`);
+        case 'popular':
+            return api.get(`/movie/popular?page=${page}`);
+        case 'toprated':
+            return api.get(`/movie/top_rated?page=${page}`);
+        case 'upcoming':
+            return api.get(`/movie/upcoming?page=${page}`);
+        default:
+            return api.get(`/movie/popular?page=${page}`); // Default to popular movies
+    }
 };
 
-// 훅에서 필터 파라미터를 포함하도록 수정
-export const useSearchMovieQuery = ({ keyword, page, genre, rating, releaseYear }) => {
+export const useSearchMovieQuery = ({ keyword, page, category }) => {
     return useQuery({
-        queryKey: ['movie-search', keyword, page, genre, rating, releaseYear],
-        queryFn: () => fetchSearchMovie({ keyword, page, genre, rating, releaseYear }),
+        queryKey: ['movie-search', keyword, page, category],
+        queryFn: () => fetchSearchMovie({ keyword, page, category }),
         select: (result) => result.data,
     });
 };

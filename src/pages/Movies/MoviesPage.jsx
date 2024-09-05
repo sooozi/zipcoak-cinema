@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
 import Alert from 'react-bootstrap/Alert';
-import Button from 'react-bootstrap/Button';
 import Col from 'react-bootstrap/Col';
 import Container from 'react-bootstrap/Container';
 import Form from 'react-bootstrap/Form';
@@ -18,6 +17,7 @@ const MoviesPage = () => {
   const [genre, setGenre] = useState('');
   const [rating, setRating] = useState('');
   const [releaseYear, setReleaseYear] = useState('');
+  const [category, setCategory] = useState('popular');
   const keyword = query.get("q");
   const filters = {
     keyword,
@@ -26,15 +26,29 @@ const MoviesPage = () => {
     rating,
     releaseYear,
   };
-  const { data, isLoading, isError, error } = useSearchMovieQuery({keyword, page, filters});
+  const { data, isLoading, isError, error } = useSearchMovieQuery({keyword, page, category});
 
   const handlePageClick=({selected})=> {
     setPage(selected + 1);
   }
 
-
   const handleFilterChange = (e) => {
     const { name, value } = e.target;
+
+    if (name === 'category') {
+      setCategory(value); // 카테고리가 변경될 때 state 업데이트
+    }
+
+    // if (name === 'category' && value === 'popular') {
+    //   window.location.href = '/movies'
+    // } else if (name === 'category' && value === 'nowplaying') {
+    //   window.location.href = '/now-playing'
+    // } else if (name === 'category' && value === 'toprated') {
+    //   window.location.href = '/top-rated'
+    // } else if (name === 'category' && value === 'upcoming') {
+    //   window.location.href = '/upcoming'
+    // }
+
     switch (name) {
       case 'genre':
         setGenre(value);
@@ -80,7 +94,21 @@ const MoviesPage = () => {
             <Form onSubmit={applyFilters}>
               <h5>Filters</h5>
               <Form.Group className="mb-3">
-                <Form.Label>Genre</Form.Label>
+                <Form.Label>Category</Form.Label>
+                <Form.Control
+                  as="select"
+                  name="category"
+                  value={category}
+                  onChange={handleFilterChange}
+                >
+                  <option value="nowplaying">Now Playing</option>
+                  <option value="popular">Popular</option>
+                  <option value="toprated">Top Rated</option>
+                  <option value="upcoming">Upcoming</option>
+                </Form.Control>
+              </Form.Group>
+              {/* <Form.Group className="mb-3">
+                <Form.Label>Category</Form.Label>
                 <Form.Control
                   as="select"
                   name="genre"
@@ -91,33 +119,9 @@ const MoviesPage = () => {
                   <option value="action">Action</option>
                   <option value="comedy">Comedy</option>
                   <option value="drama">Drama</option>
-                  {/* Add more genres as needed */}
                 </Form.Control>
-              </Form.Group>
-              <Form.Group className="mb-3">
-                <Form.Label>Rating</Form.Label>
-                <Form.Control
-                  type="number"
-                  name="rating"
-                  min="0"
-                  max="10"
-                  step="0.1"
-                  value={rating}
-                  onChange={handleFilterChange}
-                />
-              </Form.Group>
-              <Form.Group className="mb-3">
-                <Form.Label>Release Year</Form.Label>
-                <Form.Control
-                  type="number"
-                  name="releaseYear"
-                  min="1900"
-                  max={new Date().getFullYear()}
-                  value={releaseYear}
-                  onChange={handleFilterChange}
-                />
-              </Form.Group>
-              <Button variant="primary" type="submit">Apply Filters</Button>
+              </Form.Group> */}
+              {/* <Button variant="primary" type="submit">Apply Filters</Button> */}
             </Form>
           </Col>
 

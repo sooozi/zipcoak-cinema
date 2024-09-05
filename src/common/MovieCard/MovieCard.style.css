@@ -32,7 +32,8 @@
     opacity: 1;
 }
 .movie-slide-tit {
-    text-align: center;
+    font-weight: 100;
+    letter-spacing: 1px;
 }
 .movie-conts {
     display: flex;

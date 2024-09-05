@@ -46,6 +46,12 @@ body {
   transition: transform 0.5s ease-in-out;
 }
 
+/* ========== Spinner ========== */
+.spinner-area {
+  padding: 10rem;
+  width: 100%;
+  text-align: center;
+}
 
 /*
 ******************************
