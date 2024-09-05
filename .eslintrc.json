@@ -1,0 +1,14 @@
+{
+    "env": {
+      "browser": true,
+      "es2021": true
+    },
+    "extends": "eslint:recommended",
+    "parserOptions": {
+      "ecmaVersion": 12,
+      "sourceType": "module"
+    },
+    "rules": {
+      "no-unused-vars": "off"  // 사용하지 않는 변수에 대한 경고 무시
+    }
+  }

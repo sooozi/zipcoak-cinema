@@ -12,20 +12,11 @@ import MovieCard from '../../common/MovieCard/MovieCard';
 import { useSearchMovieQuery } from '../../hooks/useSearchMovie';
 
 const MoviesPage = () => {
-  const [query, setQuery] = useSearchParams();
+  const [query] = useSearchParams(); // setQuery 삭제
   const [page, setPage] = useState(1);
-  const [genre, setGenre] = useState('');
-  const [rating, setRating] = useState('');
-  const [releaseYear, setReleaseYear] = useState('');
   const [category, setCategory] = useState('popular');
   const keyword = query.get("q");
-  const filters = {
-    keyword,
-    page,
-    genre,
-    rating,
-    releaseYear,
-  };
+  
   const { data, isLoading, isError, error } = useSearchMovieQuery({keyword, page, category});
 
   const handlePageClick=({selected})=> {
@@ -37,30 +28,6 @@ const MoviesPage = () => {
 
     if (name === 'category') {
       setCategory(value); // 카테고리가 변경될 때 state 업데이트
-    }
-
-    // if (name === 'category' && value === 'popular') {
-    //   window.location.href = '/movies'
-    // } else if (name === 'category' && value === 'nowplaying') {
-    //   window.location.href = '/now-playing'
-    // } else if (name === 'category' && value === 'toprated') {
-    //   window.location.href = '/top-rated'
-    // } else if (name === 'category' && value === 'upcoming') {
-    //   window.location.href = '/upcoming'
-    // }
-
-    switch (name) {
-      case 'genre':
-        setGenre(value);
-        break;
-      case 'rating':
-        setRating(value);
-        break;
-      case 'releaseYear':
-        setReleaseYear(value);
-        break;
-      default:
-        break;
     }
   };
 
@@ -101,8 +68,8 @@ const MoviesPage = () => {
                   value={category}
                   onChange={handleFilterChange}
                 >
-                  <option value="nowplaying">Now Playing</option>
                   <option value="popular">Popular</option>
+                  <option value="nowplaying">Now Playing</option>
                   <option value="toprated">Top Rated</option>
                   <option value="upcoming">Upcoming</option>
                 </Form.Control>
