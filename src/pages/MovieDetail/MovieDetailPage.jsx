@@ -29,6 +29,9 @@ const MovieDetailPage = () => {
     'https://i.pinimg.com/236x/40/35/b1/4035b1891b777ee370fb48fbc6cada7a.jpg',
     'https://i.pinimg.com/236x/94/dd/25/94dd25f3692ecd605d0d3156e9cf7171.jpg',
     'https://i.pinimg.com/originals/48/06/65/4806655144635765866e5b1361d4a9c0.jpg',
+    'https://i.pinimg.com/236x/d6/4e/97/d64e9765deca662e8fa07d2cfdb67f7c.jpg',
+    'https://i.pinimg.com/236x/d9/57/04/d957041fe6b8ad090e7c34bd6431e34b.jpg',
+    'https://i.pinimg.com/236x/86/dc/fe/86dcfe8959960d3d75ef5f3d880e69e1.jpg',
   ];
 
   const url = `https://api.themoviedb.org/3/movie/${id}?language=ko-KR`;
