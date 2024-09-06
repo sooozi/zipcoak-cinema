@@ -1,0 +1,11 @@
+.HomePage-area {
+    padding-bottom: 100px;
+}
+.HomePage-area .react-multi-carousel-item {
+    overflow: hidden;
+    transition: 0.3s ease-in-out;
+    border-radius: 100px 100px 0px 0px;
+}
+.HomePage-area .react-multi-carousel-item:hover {
+    border-radius: 0;
+}
