@@ -95,7 +95,7 @@ const MoviesPage = () => {
         <Row>
           <Col lg={4} xs={12}>
             <Form>
-              <h5>Filters</h5>
+              <h5 className="filter-tit">Filters</h5>
               <Form.Group className="mb-3">
                 <Form.Label>Category</Form.Label>
                 <Form.Control

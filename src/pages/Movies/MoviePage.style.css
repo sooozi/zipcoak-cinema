@@ -9,11 +9,40 @@
     color:rgb(132, 125, 233);
     margin-bottom: 1rem;
 }
-h5 {
+.MoviesPage-wrap .filter-tit {
     font-size: 1.8rem;
     padding-bottom: 1.5rem;
     border-bottom: 1px solid rgba(255, 255, 255, 0.2);
 }
 .form-control {
     color: rgb(98, 89, 224, 1);
+}
+.MoviesPage-wrap .movie-card-wrap {
+    border-radius: 15px;
+    overflow: hidden;
+}
+.MoviesPage-wrap .movie-card-tit {
+    font-size: 1.2rem;
+    padding-top: 1rem;
+}
+.MoviesPage-wrap .genre-conts .badge {
+    font-size: 12px;
+    font-weight: 400;
+    padding: 5px;
+}
+.MoviesPage-wrap .movie-card-box:hover {
+    transform: scale(1.02) translateZ(20px);
+}
+.MoviesPage-wrap .genre-conts {
+    gap: 3px;
+    justify-content: flex-start;
+    animation: none;
+    opacity: 1;
+}
+.MoviesPage-wrap .movie-card-overlay > * {
+    transform: translateY(100%);
+    transition: 0.3s ease-in-out;
+}
+.MoviesPage-wrap .movie-card-overlay:hover > * {
+    transform: translateY(0);
 }
