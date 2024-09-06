@@ -143,7 +143,7 @@ const MovieDetailPage = () => {
               <h2>{movie.title}</h2>
               <div className="cont-box">
                 <h4 className="cont-tit">Storyline</h4>
-                <p>{movie.overview}</p>
+                <p>{movie.overview ? movie.overview : '-'}</p>
               </div>
               <div className="cont-box">
                 <h4 className="cont-tit">Release Date</h4>
