@@ -175,7 +175,7 @@ const MovieDetailPage = () => {
                 ></iframe>
               </div>
             ) : (
-              <p>No trailer available.</p>
+              <p>Unfortunately, there’s no trailer available 🥲</p>
             )}
           </div>
         </div>
