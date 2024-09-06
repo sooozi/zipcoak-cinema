@@ -16,6 +16,7 @@ const MovieDetailPage = () => {
   const [movieVideo, setMovieVideo] = useState(null);
   const [movieReviews, setMovieReviews] = useState([]);
   const [expandedReviews, setExpandedReviews] = useState({});
+  // const [iconImage, setIconImage] = useState('');
   const { id } = useParams();
   const navigate = useNavigate();
 
@@ -44,7 +45,15 @@ const MovieDetailPage = () => {
         },
       });
       const json = await response.json();
-      setMovieReviews(json.results);
+
+      // 리뷰 데이터에 랜덤 이미지 추가
+      const reviewsWithImages = json.results.map(review => ({
+        ...review,
+        iconImage: getRandomImage(), // 랜덤 이미지 추가
+      }));
+
+      setMovieReviews(reviewsWithImages);
+      // setMovieReviews(json.results);
       setMovieReviewsLoading(false);
     } catch (error) {
       console.error('Error fetching movie reviews:', error);
@@ -52,7 +61,15 @@ const MovieDetailPage = () => {
     }
   };
 
+  // 랜덤 이미지를 가져오는 함수
+  const getRandomImage = () => {
+    const randomIndex = Math.floor(Math.random() * imageUrls.length);
+    return imageUrls[randomIndex];
+  };
+
   useEffect(() => {
+    // setIconImage(getRandomImage()); 
+
     const fetchMovie = async () => {
       try {
         const response = await fetch(url, {
@@ -139,12 +156,6 @@ const MovieDetailPage = () => {
     const day = String(date.getDate()).padStart(2, '0');
   
     return `${year}Y ${month}M ${day}DAY`;
-  };
-
-  // 랜덤 이미지를 가져오는 함수
-  const getRandomImage = () => {
-    const randomIndex = Math.floor(Math.random() * imageUrls.length);
-    return imageUrls[randomIndex];
   };
 
   return (
@@ -267,7 +278,9 @@ const MovieDetailPage = () => {
                   <div key={review.id} className="review-box">
                     <div className="review-box-top">
                       <div className="icon-author">
-                        <img src={getRandomImage()} alt='Author Icon' />
+                        {/* <img src={iconImage} alt='Author Icon' /> */}
+                        {/* <img src={randomIconImage} alt='Author Icon' /> */}
+                        <img src={review.iconImage} alt='Author Icon' />
                       </div>
                       <h5>{review.author}</h5>
                       {rating && (
