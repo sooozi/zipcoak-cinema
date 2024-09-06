@@ -118,11 +118,48 @@ h1 {
 .sec-04 .review-box:first-child {
     border-top: 1px solid rgba(255, 255, 255, 0.2);
 }
+.sec-04 .review-box-top {
+    display: flex;
+    gap: 1rem;
+    position: relative;
+    margin-bottom: 10px;
+}
 .sec-04 .review-box button {
     background: transparent;
     border: none;
     padding: 0;
     color: rgb(132, 125, 233);
+}
+.filled-star {
+    font-size: 15px;
+    color: rgb(132, 125, 233);
+}
+.empty-star {
+    font-size: 15px;
+    color: #515165;
+}
+.sec-04 .review-date {
+    position: absolute;
+    left: calc(50px + 1rem);
+    bottom: 5px;
+    margin: 0;
+    font-size: 12px;
+    font-weight: 100;
+    letter-spacing: 0.1rem;
+    color: rgba(255, 255, 255, 0.7);
+}
+.sec-04 .review-cont-box p {
+    font-weight: 100;
+    margin-bottom: 5px;
+    color: rgba(255, 255, 255, 0.9);
+}
+.sec-04 .review-box-top h5 {
+    font-weight: 400;
+}
+.sec-04 .icon-author img {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
 }
 
 

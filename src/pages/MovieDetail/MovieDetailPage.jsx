@@ -19,7 +19,16 @@ const MovieDetailPage = () => {
   const { id } = useParams();
   const navigate = useNavigate();
 
-  console.log(movie)
+  const imageUrls = [
+    'https://i.pinimg.com/236x/2f/55/97/2f559707c3b04a1964b37856f00ad608.jpg',
+    'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS-PU_twGbYm8QYDk-bf0UPGqVrjbqQEXoL35oXW2IF1QL7F9OHBkgEUUdR_wY_lpqBsI0&usqp=CAU',
+    'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS68vwQkwD5C04gE4MMlKkCMY2qyOcF5ZWboA&s',
+    'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcST6q40unYXgnmZboEu-0pt9SoDz4rX_3FZcg&s',
+    'https://dthezntil550i.cloudfront.net/ps/latest/ps2201272314365330022817814/1280_960/56cf6ec5-7084-48e1-a543-79b1d5908eab.png',
+    'https://i.pinimg.com/236x/40/35/b1/4035b1891b777ee370fb48fbc6cada7a.jpg',
+    'https://i.pinimg.com/236x/94/dd/25/94dd25f3692ecd605d0d3156e9cf7171.jpg',
+    'https://i.pinimg.com/originals/48/06/65/4806655144635765866e5b1361d4a9c0.jpg',
+  ];
 
   const url = `https://api.themoviedb.org/3/movie/${id}?language=ko-KR`;
   const urlForVideo = `https://api.themoviedb.org/3/movie/${id}/videos?language=ko-KR`;
@@ -105,6 +114,37 @@ const MovieDetailPage = () => {
       ...prevState,
       [id]: !prevState[id],
     }));
+  };
+
+  const renderStars = (rating) => {
+    const starCount = Math.round(rating / 2); // TMDb rating is out of 10, we want 5 stars
+    const stars = [];
+    for (let i = 0; i < 5; i++) {
+      stars.push(
+        <span
+          key={i}
+          className={i < starCount ? 'filled-star' : 'empty-star'}
+        >
+          ★
+        </span>
+      );
+    }
+    return stars;
+  };
+
+  const formatDate = (dateString) => {
+    const date = new Date(dateString);
+    const year = date.getFullYear();
+    const month = String(date.getMonth() + 1).padStart(2, '0'); // 월은 0부터 시작하므로 1을 더함
+    const day = String(date.getDate()).padStart(2, '0');
+  
+    return `${year}Y ${month}M ${day}DAY`;
+  };
+
+  // 랜덤 이미지를 가져오는 함수
+  const getRandomImage = () => {
+    const randomIndex = Math.floor(Math.random() * imageUrls.length);
+    return imageUrls[randomIndex];
   };
 
   return (
@@ -221,20 +261,25 @@ const MovieDetailPage = () => {
                 const reviewContent = isExpanded ? review.content : review.content.slice(0, 300);
                 const showMoreButton = review.content.length > 300;
                 const rating = review.author_details?.rating;
+                const reviewDate = review.created_at;
 
                 return (
                   <div key={review.id} className="review-box">
-                    <h5>{review.author}</h5>
+                    <div className="review-box-top">
+                      <div className="icon-author">
+                        <img src={getRandomImage()} alt='Author Icon' />
+                      </div>
+                      <h5>{review.author}</h5>
+                      {rating && (
+                        <div className="review-rating">{renderStars(rating)}</div>
+                      )}
+                      <p className="review-date">{formatDate(reviewDate)}</p>
+                    </div>
                     <div className="review-cont-box">
                       <p>{reviewContent}</p>
-                      {rating && (
-                        <p className="review-rating">
-                          <strong>Rating:</strong> {rating} ⭐
-                        </p>
-                      )}
                       {showMoreButton && (
                         <button onClick={() => toggleReview(review.id)}>
-                          {isExpanded ? '👆 SEE LESS' : '👇 SEE ALL'}
+                          {isExpanded ? '👆 Show less' : '👇 Read more'}
                         </button>
                       )}
                     </div>
