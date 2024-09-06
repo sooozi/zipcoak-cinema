@@ -58,6 +58,26 @@ body {
   padding-top: 100px;
   justify-content: center;
 }
+.active > .page-link, .page-link.active {
+  background-color: rgb(98, 89, 224);
+  border: 0;
+}
+.page-link {
+  color: rgb(98, 89, 224);
+}
+.disabled>.page-link, .page-link.disabled, .page-link {
+  background-color: rgba(255, 255, 255, 0.8);
+  border: 0;
+}
+
+.btn-search {
+  border: 1px solid rgb(98, 89, 224);
+  color: rgb(132, 125, 233);
+}
+.btn-search:hover {
+  background-color: rgb(98, 89, 224);
+  border: 1px solid rgb(98, 89, 224);
+}
 /*
 ******************************
 * MEDIA QUERIES
