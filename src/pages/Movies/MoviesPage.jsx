@@ -67,6 +67,12 @@ const MoviesPage = () => {
     navigate(`/movies/${id}`);
   };
 
+  // 장르 필터링
+  const filteredMovies = data?.results.filter(movie => {
+    if (!genre) return true; // 장르 필터가 설정되지 않은 경우 모든 영화 표시
+    return movie.genre_ids.includes(parseInt(genreIds[genre]));
+  });
+
   if(isLoading) {
     return(
       <div className='spinner-area'>
@@ -125,12 +131,12 @@ const MoviesPage = () => {
 
           <Col lg={8} xs={12}>
             <Row>
-              {data?.results.length === 0 ? (
+              {filteredMovies?.length === 0 ? (
                 <Col xs={12}>
                   <Alert variant="warning">No movies found!</Alert>
                 </Col>
               ) : (
-                data?.results.map((movie, index) => (
+                filteredMovies.map((movie, index) => (
                   <Col
                     key={index}
                     lg={4}
