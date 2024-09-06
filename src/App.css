@@ -53,6 +53,11 @@ body {
   text-align: center;
 }
 
+/* ========== pagination ========== */
+.pagination {
+  padding-top: 100px;
+  justify-content: center;
+}
 /*
 ******************************
 * MEDIA QUERIES

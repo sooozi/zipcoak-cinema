@@ -1,14 +1,28 @@
 {
-    "env": {
-      "browser": true,
-      "es2021": true
-    },
-    "extends": "eslint:recommended",
-    "parserOptions": {
-      "ecmaVersion": 12,
-      "sourceType": "module"
-    },
-    "rules": {
-      "no-unused-vars": "off"  // 사용하지 않는 변수에 대한 경고 무시
+  "env": {
+    "browser": true,
+    "es2021": true
+  },
+  "extends": [
+    "eslint:recommended",
+    "plugin:react/recommended"  // React 권장 설정 추가
+  ],
+  "parserOptions": {
+    "ecmaVersion": 12,
+    "sourceType": "module",
+    "ecmaFeatures": {
+      "jsx": true  // JSX 문법 지원
+    }
+  },
+  "rules": {
+    "no-unused-vars": "off"  // 사용하지 않는 변수에 대한 경고 무시
+  },
+  "plugins": [
+    "react"  // React 플러그인 추가
+  ],
+  "settings": {
+    "react": {
+      "version": "detect"  // 설치된 React 버전 자동 감지
     }
   }
+}
