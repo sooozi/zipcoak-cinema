@@ -130,13 +130,17 @@ const MovieDetailPage = () => {
           <Row className='line-topBtm'>
             <Col lg={4} xs={12}>
               <div className='img-box'>
-                <div 
-                  className='movie-card-box'
-                  style={{
-                    backgroundImage: `url(https://media.themoviedb.org/t/p/w300_and_h450_bestv2${movie.poster_path})`,
-                  }}
-                >
+                {movie.poster_path ? (
+                  <div 
+                    className='movie-card-box'
+                    style={{
+                      backgroundImage: `url(https://media.themoviedb.org/t/p/w300_and_h450_bestv2${movie.poster_path})`,
+                    }}
+                  >
                 </div>
+                ) : (
+                  <div className='movie-card-box'>No Image</div>
+                )}
               </div>
             </Col>
             <Col className='cont-detail' lg={8} xs={12}>

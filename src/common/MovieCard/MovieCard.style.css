@@ -1,6 +1,8 @@
 .movie-card-box{
     width: 220px;
     width: 100%;
+    text-align: center;
+    align-content: center;
     /* height: 330px; */
     position: relative;
     aspect-ratio: 2 / 3;
@@ -9,14 +11,6 @@
     cursor: pointer;
     transition: all 0.5s ease-in-out;
     background-color: rgb(98, 89, 224, 0.5);
-}
-.movie-card-box:before{
-    content: "No Image";
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    z-index: -1;
 }
 .movie-card-box:hover{
     transform: scale(1.1) translateZ(20px);

@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import Alert from 'react-bootstrap/Alert';
 import Col from 'react-bootstrap/Col';
 import Container from 'react-bootstrap/Container';
@@ -10,36 +10,50 @@ import ReactPaginate from 'react-paginate';
 import { useNavigate, useSearchParams } from 'react-router-dom';
 import MovieCard from '../../common/MovieCard/MovieCard';
 import { useSearchMovieQuery } from '../../hooks/useSearchMovie';
+import './MoviePage.style.css';
 
 const MoviesPage = () => {
-  const [query] = useSearchParams(); // setQuery 삭제
+  const [query, setQuery] = useSearchParams();
   const [page, setPage] = useState(1);
-  const [category, setCategory] = useState('popular');
-  const keyword = query.get("q");
+  const categoryFromQuery = query.get("category") || 'popular';
+  // const [category, setCategory] = useState('popular');
+  const [category, setCategory] = useState(categoryFromQuery);
+  const keyword = query.get("q") || ''; 
   const navigate = useNavigate();
   
   const { data, isLoading, isError, error } = useSearchMovieQuery({keyword, page, category});
+
+  useEffect(() => {
+    setPage(1);// 페이지가 변경될 때마다 페이지를 1로 초기화
+  }, [keyword, category]); // keyword와 category가 변경될 때
+
+  useEffect(() => {// 페이지가 변경될 때마다 쿼리 파라미터 업데이트
+    setQuery({ q: keyword, category });
+  }, [page, category, keyword]);
 
   const handlePageClick=({selected})=> {
     setPage(selected + 1);
   }
 
   const handleFilterChange = (e) => {
-    const { name, value } = e.target;
-
-    if (name === 'category') {
-      setCategory(value); // 카테고리가 변경될 때 state 업데이트
-    }
+    const { value } = e.target;
+    
+    // 현재 쿼리 파라미터를 기반으로 새로운 URLSearchParams 객체를 생성합니다.
+    const newQuery = new URLSearchParams(query.toString());
+    
+    // 'category' 값을 업데이트하고, 'q' 파라미터를 삭제합니다.
+    newQuery.set('category', value);
+    newQuery.delete('q'); // 'q' 파라미터가 존재하면 삭제합니다.
+    
+    // 상태와 URL을 업데이트합니다.
+    setCategory(value); // 카테고리 상태를 업데이트합니다.
+    setQuery(newQuery.toString()); // 업데이트된 쿼리 문자열로 URL을 설정합니다.
+    setPage(1); // 페이지 번호를 1로 초기화합니다.
   };
 
-  const applyFilters = (e) => {
+  const handleMovieClick = (id, e) => {
     e.preventDefault();
-    setPage(1); // Reset to the first page when filters are applied
-  };
-
-  const handleMovieClick = (id) => {
-    event.preventDefault();
-    navigate(`/movies/${id}`); // 영화 id에 맞는 상세 페이지로 이동
+    navigate(`/movies/${id}`);
   };
 
   if(isLoading) {
@@ -48,7 +62,7 @@ const MoviesPage = () => {
         <Spinner
           animation="border"
           variant="danger"
-          sytle={{width:"5rem", height:"5rem"}}
+          style={{ width: "5rem", height: "5rem" }}
         />
       </div>
     )
@@ -64,7 +78,7 @@ const MoviesPage = () => {
         <Row>
 
           <Col lg={4} xs={12}>
-            <Form onSubmit={applyFilters}>
+            <Form>
               <h5>Filters</h5>
               <Form.Group className="mb-3">
                 <Form.Label>Category</Form.Label>
@@ -111,7 +125,7 @@ const MoviesPage = () => {
                     lg={4}
                     xs={12}
                   >
-                    <div onClick={() => handleMovieClick(movie.id)} >
+                    <div onClick={(e) => handleMovieClick(movie.id, e)}>
                       <MovieCard movie={movie} />
                     </div>
                   </Col>

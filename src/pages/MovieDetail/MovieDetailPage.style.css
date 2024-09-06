@@ -19,6 +19,7 @@
 h1 {
     padding-bottom: 2rem;
     font-size: calc(3rem + 1.5vw);
+    text-shadow: 0px 0px 10px #0000008f;
     animation: 1s swift-up ease-in-out forwards;
 }
 .genre-conts {

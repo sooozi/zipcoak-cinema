@@ -1,0 +1,19 @@
+.row {
+    gap: 1rem 0;
+}
+.MoviesPage-wrap .movie-card-box:hover:before {
+    opacity: 0;
+}
+.form-label {
+    font-weight: bold;
+    color:rgb(132, 125, 233);
+    margin-bottom: 1rem;
+}
+h5 {
+    font-size: 1.8rem;
+    padding-bottom: 1.5rem;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+}
+.form-control {
+    color: rgb(98, 89, 224, 1);
+}
