@@ -16,37 +16,48 @@ const MoviesPage = () => {
   const [query, setQuery] = useSearchParams();
   const [page, setPage] = useState(1);
   const categoryFromQuery = query.get("category") || 'popular';
-  // const [category, setCategory] = useState('popular');
+  const genreFromQuery = query.get("genre") || ''; // 장르 상태 추가
   const [category, setCategory] = useState(categoryFromQuery);
+  const [genre, setGenre] = useState(genreFromQuery); // 장르 상태
   const keyword = query.get("q") || ''; 
   const navigate = useNavigate();
+
+  const genreIds = {
+    action: 28,
+    comedy: 35,
+    drama: 18
+  };
   
-  const { data, isLoading, isError, error } = useSearchMovieQuery({keyword, page, category});
+  const { data, isLoading, isError, error } = useSearchMovieQuery({keyword, page, category, genre});
 
   useEffect(() => {
     setPage(1);// 페이지가 변경될 때마다 페이지를 1로 초기화
-  }, [keyword, category]); // keyword와 category가 변경될 때
+  }, [keyword, category, genre]); // keyword와 category가 변경될 때
 
-  useEffect(() => {// 페이지가 변경될 때마다 쿼리 파라미터 업데이트
-    setQuery({ q: keyword, category });
-  }, [page, category, keyword]);
+  useEffect(() => { // 페이지, 카테고리, 장르가 변경될 때마다 URL 쿼리 파라미터를 업데이트합니다.
+    setQuery({ q: keyword, category, genre });
+  }, [page, category, genre, keyword]);
 
   const handlePageClick=({selected})=> {
     setPage(selected + 1);
   }
 
   const handleFilterChange = (e) => {
-    const { value } = e.target;
+    const { name, value } = e.target;
     
     // 현재 쿼리 파라미터를 기반으로 새로운 URLSearchParams 객체를 생성합니다.
     const newQuery = new URLSearchParams(query.toString());
     
-    // 'category' 값을 업데이트하고, 'q' 파라미터를 삭제합니다.
-    newQuery.set('category', value);
+    if (name === 'category') {
+      newQuery.set('category', value);
+      setCategory(value); // 카테고리 상태 업데이트
+    } else if (name === 'genre') {
+      newQuery.set('genre', value);
+      setGenre(value); // 장르 상태 업데이트
+    }
+
     newQuery.delete('q'); // 'q' 파라미터가 존재하면 삭제합니다.
     
-    // 상태와 URL을 업데이트합니다.
-    setCategory(value); // 카테고리 상태를 업데이트합니다.
     setQuery(newQuery.toString()); // 업데이트된 쿼리 문자열로 URL을 설정합니다.
     setPage(1); // 페이지 번호를 1로 초기화합니다.
   };
@@ -76,7 +87,6 @@ const MoviesPage = () => {
     <div className="container-wrap MoviesPage-wrap">
       <Container>
         <Row>
-
           <Col lg={4} xs={12}>
             <Form>
               <h5>Filters</h5>
@@ -94,8 +104,9 @@ const MoviesPage = () => {
                   <option value="upcoming">Upcoming</option>
                 </Form.Control>
               </Form.Group>
-              {/* <Form.Group className="mb-3">
-                <Form.Label>Category</Form.Label>
+
+              <Form.Group className="mb-3">
+                <Form.Label>Genre</Form.Label>
                 <Form.Control
                   as="select"
                   name="genre"
@@ -107,7 +118,7 @@ const MoviesPage = () => {
                   <option value="comedy">Comedy</option>
                   <option value="drama">Drama</option>
                 </Form.Control>
-              </Form.Group> */}
+              </Form.Group>
               {/* <Button variant="primary" type="submit">Apply Filters</Button> */}
             </Form>
           </Col>
