@@ -78,6 +78,13 @@ body {
   background-color: rgb(98, 89, 224);
   border: 1px solid rgb(98, 89, 224);
 }
+
+.line-topBtm {
+  padding: 3rem 0;
+  border-top: 1px solid rgba(255, 255, 255, 0.2);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+}
+
 /*
 ******************************
 * MEDIA QUERIES

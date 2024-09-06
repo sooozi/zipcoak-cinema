@@ -15,7 +15,8 @@
     }
   },
   "rules": {
-    "no-unused-vars": "off"  // 사용하지 않는 변수에 대한 경고 무시
+    "no-unused-vars": "off",  // 사용하지 않는 변수에 대한 경고 무시
+    "react/prop-types": "off"  // PropTypes 검사를 비활성화
   },
   "plugins": [
     "react"  // React 플러그인 추가

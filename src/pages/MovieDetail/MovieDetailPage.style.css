@@ -1,0 +1,150 @@
+.MovieDetailPage-wrap {
+    padding-top: 65px;
+}
+/* ========== WIDE IMAGE SEC ========== */
+.img-wide-box {
+    width: 100%;
+    text-align: center;
+    aspect-ratio: 16/9;
+    background-size: contain;
+    background-repeat: no-repeat;
+}
+.img-box {
+    display: flex;
+    width: 100%;
+    height: 100%;
+    flex-direction: column;
+    justify-content: center;
+}
+h1 {
+    padding-bottom: 2rem;
+    font-size: calc(3rem + 1.5vw);
+    animation: 1s swift-up ease-in-out forwards;
+}
+.genre-conts {
+    display: flex;
+    gap: 5px;
+    justify-content: center;
+    animation: 1s swift-up ease-in-out forwards;
+    animation-delay: 0.5s;
+    opacity: 0;
+}
+.genre-conts .badge {
+    background: #ffffff4d !important;
+    font-size: 15px;
+    font-weight: 400;
+    border: 1px solid #fff;
+    box-sizing: border-box;
+}
+.section {
+    padding-top: 5rem;
+    padding-bottom: 5rem;
+}
+
+/* ========== sec 01 ========== */
+.sec-01 {
+    padding-bottom: 0 !important;
+}
+.flex-wrap {
+    display: flex;
+    align-content: center;
+    justify-content: space-around;
+    /* gap: 3rem; */
+}
+.flex-box {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.cont-icon {
+    display: block;
+    font-size: 35px;
+    text-align: center;
+}
+.cont-detail {
+    font-size: 15px;
+    font-weight: bold;
+    display: inline-block;
+    margin-bottom: 0.5rem;
+}
+.cont-tit{
+    font-size: 12px;
+    color: rgba(255, 255, 255, 0.5);
+}
+/* ========== sec 02 ========== */
+.img-box {
+    padding: 0;
+    overflow: hidden;
+}
+.sec-02 .cont-detail {
+    font-weight: normal;
+}
+.sec-02 .cont-detail h2 {
+    margin-bottom: 1.5rem;
+}
+.sec-02 .cont-detail p {
+    font-weight: 100;
+}
+.sec-02 .cont-detail p:last-child {
+    margin-bottom: 0;
+}
+.sec-02 .cont-box:not(:last-child) {
+   margin-bottom: 1rem;
+}
+.sec-02 .cont-box .cont-tit {
+    font-size: 1.3rem;
+    color: rgb(98, 89, 224, 1);
+}
+
+/* ========== sec 03 ========== */
+.sec-03 {
+    padding-top: 0 !important;
+}
+.sec-03 h3 {
+    margin-bottom: 2rem;
+    font-size: calc(1.5rem + .6vw);
+}
+.trailer-box {
+    aspect-ratio: 16 / 9;
+}
+
+
+
+  /*
+******************************
+* ANIMATION
+*****************************
+*/
+@keyframes swift-up {
+    from {
+        transform: translate3d(0, 150%, 0);
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+        transform: translate3d(0, 0, 0);
+      }
+  }
+
+  /*
+******************************
+* MEDIA QUERIES
+*****************************
+*/
+@media (max-width: 767px) {
+    h1 {
+        padding-bottom: 1rem;
+        font-size: calc(1.5rem + 1.5vw);
+    }
+    .genre-conts .badge {
+        font-size: 12px;
+    }
+    .section {
+        padding-top: 3rem;
+        padding-bottom: 3rem;
+    }
+    .sec-02 .cont-detail {
+        padding: 3rem 10px 0;
+        margin-bottom: 0;
+    }
+}

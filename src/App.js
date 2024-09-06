@@ -1,4 +1,5 @@
 import 'bootstrap/dist/css/bootstrap.min.css';
+import React from 'react';
 import { Route, Routes } from 'react-router';
 import './App.css';
 import AppLayout from './layout/AppLayout';
@@ -16,9 +17,7 @@ function App() {
           <Route index element={<MoviePage/>}/>
           <Route path=":id" element={<MovieDetailPage/>}/>
         </Route>
-
         <Route path="*" element={<NotFoundPage/>}/>
-        
       </Route>
     </Routes>
   );

@@ -7,7 +7,7 @@ import Row from 'react-bootstrap/Row';
 import Spinner from 'react-bootstrap/Spinner';
 import 'react-multi-carousel/lib/styles.css';
 import ReactPaginate from 'react-paginate';
-import { useSearchParams } from 'react-router-dom';
+import { useNavigate, useSearchParams } from 'react-router-dom';
 import MovieCard from '../../common/MovieCard/MovieCard';
 import { useSearchMovieQuery } from '../../hooks/useSearchMovie';
 
@@ -16,6 +16,7 @@ const MoviesPage = () => {
   const [page, setPage] = useState(1);
   const [category, setCategory] = useState('popular');
   const keyword = query.get("q");
+  const navigate = useNavigate();
   
   const { data, isLoading, isError, error } = useSearchMovieQuery({keyword, page, category});
 
@@ -34,6 +35,11 @@ const MoviesPage = () => {
   const applyFilters = (e) => {
     e.preventDefault();
     setPage(1); // Reset to the first page when filters are applied
+  };
+
+  const handleMovieClick = (id) => {
+    event.preventDefault();
+    navigate(`/movies/${id}`); // 영화 id에 맞는 상세 페이지로 이동
   };
 
   if(isLoading) {
@@ -100,8 +106,14 @@ const MoviesPage = () => {
                 </Col>
               ) : (
                 data?.results.map((movie, index) => (
-                  <Col key={index} lg={4} xs={12}>
-                    <MovieCard movie={movie} />
+                  <Col
+                    key={index}
+                    lg={4}
+                    xs={12}
+                  >
+                    <div onClick={() => handleMovieClick(movie.id)} >
+                      <MovieCard movie={movie} />
+                    </div>
                   </Col>
                 ))
               )}
