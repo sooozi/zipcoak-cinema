@@ -11,16 +11,37 @@ const API_KEY = process.env.REACT_APP_API_KEY;
 const MovieDetailPage = () => {
   const [movieLoading, setMovieLoading] = useState(true);
   const [movieVideoLoading, setMovieVideoLoading] = useState(true);
+  const [movieReviewsLoading, setMovieReviewsLoading] = useState(true);
   const [movie, setMovie] = useState(null);
   const [movieVideo, setMovieVideo] = useState(null);
+  const [movieReviews, setMovieReviews] = useState([]);
+  const [expandedReviews, setExpandedReviews] = useState({});
   const { id } = useParams();
   const navigate = useNavigate();
-  
 
   console.log(movie)
 
   const url = `https://api.themoviedb.org/3/movie/${id}?language=ko-KR`;
   const urlForVideo = `https://api.themoviedb.org/3/movie/${id}/videos?language=ko-KR`;
+  const urlForReviews = `https://api.themoviedb.org/3/movie/${id}/reviews`;
+
+  const fetchMovieReviews = async () => {
+    try {
+      const response = await fetch(urlForReviews, {
+        method: 'GET',
+        headers: {
+          accept: 'application/json',
+          Authorization: `Bearer ${API_KEY}`,
+        },
+      });
+      const json = await response.json();
+      setMovieReviews(json.results);
+      setMovieReviewsLoading(false);
+    } catch (error) {
+      console.error('Error fetching movie reviews:', error);
+      setMovieReviewsLoading(false);
+    }
+  };
 
   useEffect(() => {
     const fetchMovie = async () => {
@@ -61,6 +82,7 @@ const MovieDetailPage = () => {
 
     fetchMovie();
     fetchMovieVideo();
+    fetchMovieReviews();
   }, [id]);
   
   if (movieLoading || movieVideoLoading) {
@@ -76,6 +98,13 @@ const MovieDetailPage = () => {
     if (num >= 1e6) return (num / 1e6).toFixed(1) + 'M';
     if (num >= 1e3) return (num / 1e3).toFixed(1) + 'K';
     return num;
+  };
+
+  const toggleReview = (id) => {
+    setExpandedReviews((prevState) => ({
+      ...prevState,
+      [id]: !prevState[id],
+    }));
   };
 
   return (
@@ -98,34 +127,34 @@ const MovieDetailPage = () => {
         </div>
       </div>
       <Container>
-      <div className='section sec-01'>
-        <div className='flex-wrap'>
-          <div className='flex-box'>
-            <span className='cont-icon'>⭐</span>
-            <p className='cont-detail'>{movie.vote_average.toFixed(1)}</p>
-            <span className='cont-tit'>Rating</span>
-          </div>
-          <div className='flex-box'>
-            {movie.adult ? (
-              <span className="age-warning">
-                <span className='cont-icon' role="img" aria-label="over 18">📛</span> 
-                <span className='cont-detail'>OVER 18</span>
-              </span>
-            ) : (
-              <span className="age-warning">
-                <span className='cont-icon' role="img" aria-label="under 18">👨‍👩‍👧‍👦</span>
-                <span className='cont-detail'>UNDER 18</span>
-              </span>
-            )}
-            <span className='cont-tit'>Age</span>
-          </div>
-          <div className='flex-box'>
-            <span className='cont-icon'>💕</span>
-            <p className='cont-detail'>{movie.popularity}</p>
-            <span className='cont-tit'>Popularity</span>
+        <div className='section sec-01'>
+          <div className='flex-wrap'>
+            <div className='flex-box'>
+              <span className='cont-icon'>⭐</span>
+              <p className='cont-detail'>{movie.vote_average.toFixed(1)}</p>
+              <span className='cont-tit'>Rating</span>
+            </div>
+            <div className='flex-box'>
+              {movie.adult ? (
+                <span className="age-warning">
+                  <span className='cont-icon' role="img" aria-label="over 18">📛</span> 
+                  <span className='cont-detail'>OVER 18</span>
+                </span>
+              ) : (
+                <span className="age-warning">
+                  <span className='cont-icon' role="img" aria-label="under 18">👨‍👩‍👧‍👦</span>
+                  <span className='cont-detail'>UNDER 18</span>
+                </span>
+              )}
+              <span className='cont-tit'>Age</span>
+            </div>
+            <div className='flex-box'>
+              <span className='cont-icon'>💕</span>
+              <p className='cont-detail'>{movie.popularity}</p>
+              <span className='cont-tit'>Popularity</span>
+            </div>
           </div>
         </div>
-      </div>
         <div className='section sec-02'>
           <Row className='line-topBtm'>
             <Col lg={4} xs={12}>
@@ -180,6 +209,40 @@ const MovieDetailPage = () => {
               </div>
             ) : (
               <p>Unfortunately, there’s no trailer available 🥲</p>
+            )}
+          </div>
+        </div>
+        <div className='section sec-04'>
+          <h3>📖 Reviews!</h3>
+          <div className="review-wrap">
+            {movieReviews.length > 0 ? (
+              movieReviews.map((review) => {
+                const isExpanded = expandedReviews[review.id];
+                const reviewContent = isExpanded ? review.content : review.content.slice(0, 300);
+                const showMoreButton = review.content.length > 300;
+                const rating = review.author_details?.rating;
+
+                return (
+                  <div key={review.id} className="review-box">
+                    <h5>{review.author}</h5>
+                    <div className="review-cont-box">
+                      <p>{reviewContent}</p>
+                      {rating && (
+                        <p className="review-rating">
+                          <strong>Rating:</strong> {rating} ⭐
+                        </p>
+                      )}
+                      {showMoreButton && (
+                        <button onClick={() => toggleReview(review.id)}>
+                          {isExpanded ? '👆 SEE LESS' : '👇 SEE ALL'}
+                        </button>
+                      )}
+                    </div>
+                  </div>
+                );
+              })
+            ) : (
+              <p>No reviews available 🥲</p>
             )}
           </div>
         </div>

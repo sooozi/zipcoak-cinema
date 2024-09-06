@@ -100,8 +100,9 @@ h1 {
 /* ========== sec 03 ========== */
 .sec-03 {
     padding-top: 0 !important;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.2);
 }
-.sec-03 h3 {
+.sec-03 h3, .sec-04 h3 {
     margin-bottom: 2rem;
     font-size: calc(1.5rem + .6vw);
 }
@@ -109,8 +110,23 @@ h1 {
     aspect-ratio: 16 / 9;
 }
 
+/* ========== sec 04 ========== */
+.sec-04 .review-box {
+    padding: 15px 0;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+}
+.sec-04 .review-box:first-child {
+    border-top: 1px solid rgba(255, 255, 255, 0.2);
+}
+.sec-04 .review-box button {
+    background: transparent;
+    border: none;
+    padding: 0;
+    color: rgb(132, 125, 233);
+}
 
-  /*
+
+/*
 ******************************
 * MEDIA QUERIES
 *****************************
