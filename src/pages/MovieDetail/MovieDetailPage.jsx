@@ -4,6 +4,7 @@ import Col from 'react-bootstrap/Col';
 import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
 import { useNavigate, useParams } from 'react-router-dom';
+import MovieCard from '../../common/MovieCard/MovieCard';
 import './MovieDetailPage.style.css';
 
 const API_KEY = process.env.REACT_APP_API_KEY;
@@ -70,6 +71,12 @@ const MovieDetailPage = () => {
   const getRandomImage = () => {
     const randomIndex = Math.floor(Math.random() * imageUrls.length);
     return imageUrls[randomIndex];
+  };
+
+  const handleMovieClick = (id, e) => {
+    e.preventDefault();
+    navigate(`/movies/${id}`);
+    window.scrollTo(0, 0);
   };
 
   useEffect(() => {
@@ -331,21 +338,16 @@ const MovieDetailPage = () => {
           <div className="recommend-wrap">
           {recommendedMovies.length > 0 ? (
             <Row>
-              {recommendedMovies.map((movie) => (
-                <Col key={movie.id} lg={3} xs={6} className="recommend-box">
-                  <div
-                    className="recommend-card"
-                    style={{
-                      backgroundImage: movie.poster_path
-                        ? `url(https://image.tmdb.org/t/p/w300_and_h450_bestv2${movie.poster_path})`
-                        : `url(/path-to-default-image)`, // Fallback image URL
-                      backgroundSize: 'cover',  // Ensure the poster fills the card
-                      backgroundPosition: 'center',  // Center the poster image
-                      height: '400px',  // Adjust height to show the full poster
-                    }}
-                  ></div>
-                  <p>{movie.title}</p>
-                </Col>
+              {recommendedMovies.map((movie, index) => (
+                <Col
+                  key={index}
+                  lg={4}
+                  xs={12}
+                >
+                <div onClick={(e) => handleMovieClick(movie.id, e)}>
+                  <MovieCard movie={movie} />
+                </div>
+              </Col>
               ))}
             </Row>
           ) : (
