@@ -331,14 +331,17 @@ const MovieDetailPage = () => {
           <div className="recommend-wrap">
           {recommendedMovies.length > 0 ? (
             <Row>
-              {recommendedMovies.map(movie => (
+              {recommendedMovies.map((movie) => (
                 <Col key={movie.id} lg={3} xs={6} className="recommend-box">
                   <div
                     className="recommend-card"
                     style={{
                       backgroundImage: movie.poster_path
                         ? `url(https://image.tmdb.org/t/p/w300_and_h450_bestv2${movie.poster_path})`
-                        : 'url(/path-to-default-image)', // Fallback image if no poster is available
+                        : `url(/path-to-default-image)`, // Fallback image URL
+                      backgroundSize: 'cover',  // Ensure the poster fills the card
+                      backgroundPosition: 'center',  // Center the poster image
+                      height: '400px',  // Adjust height to show the full poster
                     }}
                   ></div>
                   <p>{movie.title}</p>
