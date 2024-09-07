@@ -16,6 +16,7 @@ const MovieDetailPage = () => {
   const [movieVideo, setMovieVideo] = useState(null);
   const [movieReviews, setMovieReviews] = useState([]);
   const [expandedReviews, setExpandedReviews] = useState({});
+  const [recommendedMovies, setRecommendedMovies] = useState([]);
   // const [iconImage, setIconImage] = useState('');
   const { id } = useParams();
   const navigate = useNavigate();
@@ -37,6 +38,7 @@ const MovieDetailPage = () => {
   const url = `https://api.themoviedb.org/3/movie/${id}?language=ko-KR`;
   const urlForVideo = `https://api.themoviedb.org/3/movie/${id}/videos?language=ko-KR`;
   const urlForReviews = `https://api.themoviedb.org/3/movie/${id}/reviews`;
+  const urlForRecommendations = `https://api.themoviedb.org/3/movie/${id}/recommendations`;
 
   const fetchMovieReviews = async () => {
     try {
@@ -91,6 +93,22 @@ const MovieDetailPage = () => {
       }
     };
 
+    const fetchRecommendedMovies = async () => {
+      try {
+        const response = await fetch(urlForRecommendations, {
+          method: 'GET',
+          headers: {
+            accept: 'application/json',
+            Authorization: `Bearer ${API_KEY}`,
+          },
+        });
+        const json = await response.json();
+        setRecommendedMovies(json.results); // Set the recommended movies in state
+      } catch (error) {
+        console.error('Error fetching recommended movies:', error);
+      }
+    };
+
     const fetchMovieVideo = async () => {
       try {
         const response = await fetch(urlForVideo, {
@@ -112,6 +130,7 @@ const MovieDetailPage = () => {
     fetchMovie();
     fetchMovieVideo();
     fetchMovieReviews();
+    fetchRecommendedMovies();
   }, [id]);
   
   if (movieLoading || movieVideoLoading) {
@@ -306,6 +325,30 @@ const MovieDetailPage = () => {
               <p>No reviews available 🥲</p>
             )}
           </div>
+        </div>
+        <div className='section sec-05'>
+          <h3>🎬 Recommend</h3>
+          <div className="recommend-wrap">
+          {recommendedMovies.length > 0 ? (
+            <Row>
+              {recommendedMovies.map(movie => (
+                <Col key={movie.id} lg={3} xs={6} className="recommend-box">
+                  <div
+                    className="recommend-card"
+                    style={{
+                      backgroundImage: movie.poster_path
+                        ? `url(https://image.tmdb.org/t/p/w300_and_h450_bestv2${movie.poster_path})`
+                        : 'url(/path-to-default-image)', // Fallback image if no poster is available
+                    }}
+                  ></div>
+                  <p>{movie.title}</p>
+                </Col>
+              ))}
+            </Row>
+          ) : (
+            <p>No recommended movies available 🥲</p>
+          )}
+        </div>
         </div>
       </Container>
     </div>

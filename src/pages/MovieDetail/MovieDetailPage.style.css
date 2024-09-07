@@ -111,13 +111,16 @@ h1 {
 }
 
 /* ========== sec 04 ========== */
+.sec-04 {
+    padding-top: 2rem;
+}
 .sec-04 .review-box {
     padding: 15px 0;
     border-bottom: 1px solid rgba(255, 255, 255, 0.2);
 }
-.sec-04 .review-box:first-child {
+/* .sec-04 .review-box:first-child {
     border-top: 1px solid rgba(255, 255, 255, 0.2);
-}
+} */
 .sec-04 .review-box-top {
     display: flex;
     gap: 1rem;
