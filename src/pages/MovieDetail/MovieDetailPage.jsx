@@ -336,24 +336,24 @@ const MovieDetailPage = () => {
         <div className='section sec-05'>
           <h3>🎬 Recommend</h3>
           <div className="recommend-wrap">
-          {recommendedMovies.length > 0 ? (
-            <Row>
-              {recommendedMovies.map((movie, index) => (
-                <Col
-                  key={index}
-                  lg={4}
-                  xs={12}
-                >
-                <div onClick={(e) => handleMovieClick(movie.id, e)}>
-                  <MovieCard movie={movie} />
-                </div>
-              </Col>
-              ))}
-            </Row>
-          ) : (
-            <p>No recommended movies available 🥲</p>
-          )}
-        </div>
+            {recommendedMovies.length > 0 ? (
+              <Row>
+                {recommendedMovies.map((movie, index) => (
+                  <Col
+                    key={index}
+                    lg={4}
+                    xs={12}
+                  >
+                    <div onClick={(e) => handleMovieClick(movie.id, e)}>
+                      <MovieCard movie={movie} />
+                    </div>
+                  </Col>
+                ))}
+              </Row>
+            ) : (
+              <p>No recommended movies available 🥲</p>
+            )}
+          </div>
         </div>
       </Container>
     </div>
