@@ -1,6 +1,7 @@
 .MovieDetailPage-wrap {
     padding-top: 65px;
 }
+
 /* ========== WIDE IMAGE SEC ========== */
 .img-wide-box {
     width: 100%;
@@ -72,6 +73,7 @@ h1 {
     font-size: 12px;
     color: rgba(255, 255, 255, 0.5);
 }
+
 /* ========== sec 02 ========== */
 .img-box {
     padding: 0;
@@ -118,9 +120,6 @@ h1 {
     padding: 20px 0;
     border-bottom: 1px solid rgba(255, 255, 255, 0.2);
 }
-/* .sec-04 .review-box:first-child {
-    border-top: 1px solid rgba(255, 255, 255, 0.2);
-} */
 .sec-04 .review-box-top {
     display: flex;
     gap: 1rem;
