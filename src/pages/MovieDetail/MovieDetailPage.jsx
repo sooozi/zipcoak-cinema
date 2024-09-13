@@ -18,7 +18,6 @@ const MovieDetailPage = () => {
   const [movieReviews, setMovieReviews] = useState([]);
   const [expandedReviews, setExpandedReviews] = useState({});
   const [recommendedMovies, setRecommendedMovies] = useState([]);
-  // const [iconImage, setIconImage] = useState('');
   const { id } = useParams();
   const navigate = useNavigate();
 
