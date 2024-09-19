@@ -274,6 +274,7 @@ const MovieDetailPage = () => {
         </div>
         <div className='section sec-03'>
           <h3>👀 You have to watch this!</h3>
+          
           <div className="trailer-wrap">
             {movieVideo && movieVideo.results.length > 0 ? (
               <div className="trailer-box">
@@ -293,6 +294,7 @@ const MovieDetailPage = () => {
         </div>
         <div className='section sec-04'>
           <h3>📖 Reviews!</h3>
+
           <div className="review-wrap">
             {movieReviews.length > 0 ? (
               movieReviews.map((review) => {
@@ -334,6 +336,7 @@ const MovieDetailPage = () => {
         </div>
         <div className='section sec-05'>
           <h3>🎬 Recommend</h3>
+
           <div className="recommend-wrap">
             {recommendedMovies.length > 0 ? (
               <Row>
