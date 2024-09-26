@@ -8,6 +8,7 @@ const MovieCard = ({ movie }) => {
   const {data:genreData} = useMovieGenreQuery();
 
   const showGenre = (genreIdList) => {
+
     if(!genreData) return [];
     const genreNameList = genreIdList.map((id) => {
       const genreObj = genreData.find((genre) => genre.id === id);
@@ -26,6 +27,7 @@ const MovieCard = ({ movie }) => {
       >
         <div className='movie-card-overlay'>
           <h5 className='movie-card-tit'>{movie.title}</h5>
+          
           <Stack className='movie-conts' direction="horizontal" gap={2}>
             <div className='movie-conts-top genre-conts'>
               {showGenre(movie.genre_ids).map((genre, index) => (
