@@ -8,12 +8,15 @@ import './Homepage.style.css';
 const Homepage = () => {
   return (
     <div className="container-wrap-wide HomePage-area">
+
       <Banner />
+
       <div className="slides-cont">
         <PopularMovieSlide />
         <TopMovieSlide />
         <UpComingMovieSlide />
       </div>
+      
     </div>
   )
 }
