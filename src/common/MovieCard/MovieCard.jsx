@@ -8,10 +8,10 @@ const MovieCard = ({ movie }) => {
   const {data:genreData} = useMovieGenreQuery();
 
   const showGenre = (genreIdList) => {
-
     if(!genreData) return [];
     const genreNameList = genreIdList.map((id) => {
       const genreObj = genreData.find((genre) => genre.id === id);
+
       return genreObj.name;
     });
 
@@ -42,6 +42,7 @@ const MovieCard = ({ movie }) => {
                 💕 {movie.popularity}
               </Badge>
             </div>
+            
             <Badge className='movie-cont cont-adult' pill bg="secondary">
               {movie.adult ? "📛 OVER 18" : "👨‍👩‍👧‍👦 UNDER 18"}
             </Badge>
