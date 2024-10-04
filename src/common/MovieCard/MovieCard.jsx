@@ -42,7 +42,6 @@ const MovieCard = ({ movie }) => {
                 💕 {movie.popularity}
               </Badge>
             </div>
-            
             <Badge className='movie-cont cont-adult' pill bg="secondary">
               {movie.adult ? "📛 OVER 18" : "👨‍👩‍👧‍👦 UNDER 18"}
             </Badge>
