@@ -12,12 +12,10 @@
     transition: all 0.5s ease-in-out;
     background-color: rgb(98, 89, 224, 0.5);
 }
-
 .movie-card-box:hover{
     transform: scale(1.1) translateZ(20px);
     z-index: 2;
 }
-
 .movie-card-overlay{
     opacity: 0;
     width: 100%;
@@ -32,49 +30,40 @@
     flex-direction: column;
     justify-content: space-between;
 }
-
 .movie-card-overlay:hover{
     opacity: 1;
 }
-
 .movie-slide-tit {
     font-weight: 100;
     letter-spacing: 1px;
 }
-
 .movie-conts {
     display: flex;
     flex-direction: column;
     justify-content: space-between;
     align-items: flex-start;
 }
-
 .movie-conts-top{
     display: flex;
     gap: 5px;
 }
-
 .genre-conts {
     flex-flow: wrap;
 }
-
 .genre-conts .badge {
     background: rgba(255, 255, 255, 0.3) !important;
     border: 1px solid #fff;
     box-sizing: border-box;
     font-weight: 400;
 }
-
 .movie-cont {
     font-size: 12px;
     font-weight: normal;
     background: rgba(103, 105, 221, 0.7) !important;
 }
-
 .cont-adult{
     background: rgba(255, 106, 106, 0.5) !important;
 }
-
 .movie-card-tit {
     font-size: 1.2rem;
     padding-top: 1rem;
