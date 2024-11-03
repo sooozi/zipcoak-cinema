@@ -3,14 +3,13 @@
     width: 100%;
     text-align: center;
     align-content: center;
-    /* height: 330px; */
     position: relative;
-    aspect-ratio: 2 / 3;
     background-size: cover;
     background-repeat: no-repeat;
     cursor: pointer;
     transition: all 0.5s ease-in-out;
     background-color: rgb(98, 89, 224, 0.5);
+    aspect-ratio: 2 / 3;
 }
 .movie-card-box:hover{
     transform: scale(1.1) translateZ(20px);

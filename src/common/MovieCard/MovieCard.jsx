@@ -34,6 +34,7 @@ const MovieCard = ({ movie }) => {
                 <Badge bg="danger" key={index}>{genre}</Badge> // map 함수가 값을 반환하도록 수정
               ))}
             </div>
+            
             <div className='movie-conts-top'>
               <Badge className='movie-cont' pill bg="primary">
                 ⭐ {movie.vote_average}
